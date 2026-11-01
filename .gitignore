@@ -1,9 +1,11 @@
 # Credenciales — nunca al repositorio
 .secrets/
 
-# Dependencias y modelos descargados (se reinstalan con LEEME.md)
+# Dependencias y modelos descargados (se reinstalan con setup.ps1)
 .pylibs/
-.models/
+.models/*
+# el modelo chico va en el repo: 4,5 MB y deja la herramienta usable al clonar
+!.models/u2netp.onnx
 
 # Otros proyectos que viven en el mismo disco
 agente-nichos-youtube/

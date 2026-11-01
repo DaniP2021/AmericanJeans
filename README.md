@@ -59,15 +59,61 @@ python arquitectura-agente-tienda/qa/kit_whatsapp.py
 El instructivo completo, con las reglas para disparar las fotos y los límites conocidos, está en
 [`herramientas/LEEME.md`](arquitectura-agente-tienda/herramientas/LEEME.md).
 
-### Requisitos
+## Trabajar desde otra PC
 
-Python 3.12 con Pillow y numpy. Además, dos cosas que **no** están en el repositorio porque pesan
-más de 300 MB en total:
+El repositorio trae el catálogo, las herramientas, la documentación y el modelo de segmentación
+chico (4,5 MB). Lo único que falta se instala solo con un comando.
 
-- `.pylibs/` — OpenCV y ONNX Runtime
-- `.models/` — modelos de segmentación U2Net (4,5 MB el chico, 167 MB el grande)
+**1.** Clonar e entrar:
 
-Se instalan una vez y quedan ignorados por git. El procedimiento está en el LEEME.
+```powershell
+git clone https://github.com/USUARIO/american-jeans.git
+cd american-jeans
+```
+
+**2.** Preparar la máquina:
+
+```powershell
+.\setup.ps1
+```
+
+Instala OpenCV y ONNX Runtime dentro del proyecto (`.pylibs/`, sin tocar el sistema) y verifica que
+todo importe. Si Windows bloquea la ejecución de scripts:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\setup.ps1
+```
+
+**3.** Para el modelo de mejor calidad (167 MB), que no puede ir en el repositorio porque supera el
+límite de 100 MB por archivo de GitHub:
+
+```powershell
+.\setup.ps1 -Completo
+```
+
+Sin ese paso la herramienta funciona igual, con el modelo chico: tarda menos y recorta bien las
+prendas sobre fondo parejo. El grande conviene cuando el fondo es cargado.
+
+### Qué trae y qué se baja
+
+| | En el repo | Se baja con `setup.ps1` |
+|---|---|---|
+| Catálogo y fotos | ✓ 33 MB | |
+| Herramientas y documentos | ✓ | |
+| Modelo chico (`u2netp.onnx`) | ✓ 4,5 MB | |
+| Modelo grande (`u2net.onnx`) | | 167 MB, con `-Completo` |
+| OpenCV y ONNX Runtime | | 55 MB, siempre |
+
+Las dependencias pesadas no van en git porque se reinstalan solas en un minuto y cambian según la
+versión de Python de cada máquina. Así el repositorio queda liviano y el arranque es igual en
+cualquier PC.
+
+Alternativa con entorno virtual, si preferís pip:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\pip install -r requirements.txt
+```
 
 ---
 
@@ -105,5 +151,5 @@ Lo que sigue, en orden, está en [`PENDIENTES.md`](PENDIENTES.md):
 - Las fotos son de prendas reales del local, tomadas sobre un lienzo verde y recortadas
   automáticamente. No hay imágenes generadas en el catálogo.
 - La carpeta `.secrets/` está ignorada: guarda credenciales de la API de generación de imágenes.
-- Los modelos y dependencias pesadas también están ignorados; el repositorio pesa unos 34 MB y es
-  casi todo imágenes.
+- El modelo chico viaja en el repositorio; el grande y las dependencias se bajan con setup.ps1.
+  El repositorio pesa unos 38 MB, casi todo imágenes.
