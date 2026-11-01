@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!-- BORRADOR: requiere revisión de un profesional y conexión del formulario antes de publicar. -->
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Botón de arrepentimiento · American Jeans</title>
+<meta name="description" content="Ejercé tu derecho de arrepentimiento en 10 días corridos, sin costo y sin expresar motivo.">
+<meta name="theme-color" content="#0E0E0E">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="legal.css">
+</head>
+<body>
+<header class="header">
+  <div class="contenedor header__in">
+    <a class="marca" href="../index.html" aria-label="American Jeans, inicio">
+      <span class="marca__nombre">American Jeans</span>
+
+      <span class="marca__div" aria-hidden="true"></span>
+
+      <span class="marca__linea">basic</span>
+    </a>
+  </div>
+</header>
+
+<main class="legal">
+  <div class="contenedor">
+    <a class="legal__volver" href="../index.html">← Volver al inicio</a>
+    <h1>Botón de arrepentimiento</h1>
+    <p class="legal__meta">Última actualización: [fecha] · Resolución 424/2020 · Art. 34, Ley 24.240</p>
+
+    <div class="legal__aviso">
+      <strong>Tenés 10 días corridos</strong> desde que recibís la compra para arrepentirte, sin expresar
+      motivo y sin costo. El reintegro se hace por el mismo medio de pago dentro de los 10 días hábiles
+      de recibida la prenda.
+    </div>
+
+    <h2>Pedir el arrepentimiento</h2>
+    <p>Completá el formulario. Te respondemos con el número de gestión y las instrucciones de devolución.</p>
+
+    <!-- El formulario necesita un endpoint real (email, CRM o servicio de formularios).
+         Mientras no esté conectado, el derecho se ejerce por email o WhatsApp, que es válido. -->
+    <form method="post" action="[ENDPOINT]">
+      <div class="form-campo">
+        <label for="nombre">Nombre y apellido</label>
+        <input id="nombre" name="nombre" type="text" autocomplete="name" required>
+      </div>
+
+      <div class="form-campo">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required>
+        <p class="ayuda">Ahí te llega la confirmación de la gestión.</p>
+      </div>
+
+      <div class="form-campo">
+        <label for="pedido">Número de pedido o ticket</label>
+        <input id="pedido" name="pedido" type="text" required>
+        <p class="ayuda">Está en el mail de confirmación o en el ticket de la sucursal.</p>
+      </div>
+
+      <div class="form-campo">
+        <label for="fecha">Fecha en que recibiste la compra</label>
+        <input id="fecha" name="fecha" type="date" required>
+      </div>
+
+      <div class="form-campo">
+        <label for="motivo">Motivo (opcional)</label>
+        <textarea id="motivo" name="motivo"></textarea>
+        <p class="ayuda">No es obligatorio. El derecho existe con o sin motivo.</p>
+      </div>
+
+      <div class="form-campo">
+        <label for="devolucion">Cómo preferís la devolución</label>
+        <select id="devolucion" name="devolucion">
+          <option>Reintegro por el mismo medio de pago</option>
+          <option>Cambio por otro talle o color</option>
+          <option>Nota de crédito</option>
+        </select>
+      </div>
+
+      <div class="form-check">
+        <input id="acepto" name="acepto" type="checkbox" required>
+        <label for="acepto">Declaro que la prenda está sin uso, con etiqueta, y que los datos son correctos.</label>
+      </div>
+
+      <button class="aj-btn aj-btn--primario" type="submit">Enviar solicitud</button>
+    </form>
+
+    <h2>También podés ejercerlo así</h2>
+    <ul>
+      <li>Por email: <a href="mailto:hola@americanjeans.com.ar">hola@americanjeans.com.ar</a>, con el asunto "Arrepentimiento" y el número de pedido.</li>
+      <li>Por WhatsApp, de lunes a sábado de 9 a 19:
+        <a href="https://wa.me/5491156469722?text=Hola%2C%20quiero%20ejercer%20el%20bot%C3%B3n%20de%20arrepentimiento%20del%20pedido%20...">escribinos acá</a>.</li>
+      <li>En Av. Rivadavia 2713, con el ticket.</li>
+    </ul>
+    <p>
+      Los tres canales tienen la misma validez. La fecha que cuenta para el plazo es la del primer contacto,
+      no la de nuestra respuesta.
+    </p>
+
+    <h2>Qué pasa después</h2>
+    <ol>
+      <li>Te confirmamos la recepción de la solicitud con un número de gestión.</li>
+      <li>Coordinamos el retiro o la entrega en Av. Rivadavia 2713, sin costo para vos.</li>
+      <li>Verificamos la prenda: sin uso, con etiqueta.</li>
+      <li>Procesamos el reintegro, el cambio o la nota de crédito, según lo que elegiste.</li>
+    </ol>
+
+    <h2>Botón de baja</h2>
+    <p>
+      Si recibís novedades o reposiciones por email o WhatsApp, podés darte de baja en el mismo enlace de
+      cada envío o escribiendo a <a href="mailto:hola@americanjeans.com.ar">hola@americanjeans.com.ar</a>
+      con el asunto "Baja". La baja se procesa dentro de las 48 horas hábiles.
+    </p>
+
+    <h2>Reclamos</h2>
+    <p>
+      Si la respuesta no te conforma, podés presentar el reclamo en el formulario oficial de
+      <a href="https://www.argentina.gob.ar/produccion/defensadelconsumidor/formulario" rel="noopener" target="_blank">Defensa de las y los consumidores</a>.
+    </p>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="contenedor footer__legal">
+    <p class="datos-fiscales">El 73 S.R.L. · CUIT 30-71486507-9 · Av. Rivadavia 2713, CABA</p>
+    <p><a href="../index.html">Inicio</a> · <a href="terminos.html">Términos y condiciones</a> · <a href="cambios.html">Cambios y devoluciones</a> · <a href="privacidad.html">Privacidad</a></p>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catálogo American Jeans — dos versiones</title>
+<style>
+  :root { --tinta:#1C1512; --suave:#6E625B; --borde:#E4D6C8; --terracota:#B8452C;
+         --crema:#FDF6F1; --arena:#F5E9DE; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:
+      radial-gradient(900px 500px at 50% 0%, #FFFBF7 0%, rgba(255,251,247,0) 60%),
+      linear-gradient(180deg, var(--crema), var(--arena));
+    color:var(--tinta); font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    min-height:100vh; padding:48px 24px 64px; }
+  header { max-width:900px; margin:0 auto 34px; }
+  h1 { margin:0 0 8px; font-size:1.7rem; }
+  header p { margin:0; color:var(--suave); font-size:.92rem; line-height:1.5; }
+  main { max-width:900px; margin:0 auto; display:grid; gap:16px; }
+  a.opcion { display:flex; gap:18px; align-items:center; text-decoration:none; color:inherit;
+             background:#fff; border:1px solid var(--borde); border-radius:14px; padding:20px 22px;
+             transition:transform .15s ease, box-shadow .15s ease; }
+  a.opcion:hover { transform:translateY(-2px); box-shadow:0 12px 26px rgba(120,86,62,.13); }
+  .num { font-size:1.5rem; font-weight:800; color:var(--terracota); width:34px; flex:0 0 auto; }
+  .txt h2 { margin:0 0 4px; font-size:1.02rem; }
+  .txt p { margin:0; font-size:.85rem; color:var(--suave); line-height:1.45; }
+  .flecha { margin-left:auto; font-size:1.4rem; color:var(--terracota); }
+  footer { max-width:900px; margin:30px auto 0; color:var(--suave); font-size:.8rem; line-height:1.6; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Dos versiones del catálogo</h1>
+    <p>Los mismos 18 productos, con dos tratamientos distintos. Las dos tienen el filtro por
+       ocasión y el interruptor de fondo: cambia solo la presentación de cada ficha.</p>
+  </header>
+  <main>
+    <a class="opcion" href="catalogo.html">
+      <span class="num">1</span>
+      <span class="txt">
+        <h2>Prenda sobre el fondo</h2>
+        <p>La prenda se apoya directa sobre el lino, con sombra suave. La más cálida.</p>
+      </span>
+      <span class="flecha">→</span>
+    </a>
+    <a class="opcion" href="catalogo-tarjetas.html">
+      <span class="num">2</span>
+      <span class="txt">
+        <h2>Tarjetas blancas sobre lino</h2>
+        <p>Cada producto en una tarjeta blanca con borde y sombra. Más ordenada para comparar,
+           y es la que mejor recibe el precio cuando lo tengamos.</p>
+      </span>
+      <span class="flecha">→</span>
+    </a>
+  </main>
+  <footer>
+    Las dos comparten archivos: si sumás un producto, se actualizan las dos a la vez.<br>
+    La versión con hojas quedó afuera: la decoración no sumaba y ensuciaba la grilla.
+  </footer>
+</body>
+</html>

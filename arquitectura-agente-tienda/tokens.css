@@ -1,0 +1,178 @@
+/* ============================================================
+   American Jeans — Design tokens
+   Fuente: 04-Identidad-American-Jeans.md
+   Uso: base para la landing (Fase 1) y la tienda (Fase 2).
+   No agregar colores fuera de esta lista.
+   ============================================================ */
+
+:root {
+  /* Marca */
+  --aj-negro: #0E0E0E;
+  --aj-rojo: #B0232B;          /* confirmar con el vectorial original */
+  --aj-rojo-hover: #8E1B22;
+  --aj-blanco: #FFFFFF;
+  --aj-gris: #6B6B6B;        /* texto secundario — AA sobre blanco (5.33:1) */
+  --aj-gris-borde: #E3E1DE;
+  --aj-fondo-claro: #F5F4F2;
+
+  /* Semántica */
+  --aj-texto: var(--aj-negro);
+  --aj-texto-suave: #5A5A5A;
+  --aj-precio: var(--aj-negro);
+  --aj-acento: var(--aj-rojo);
+  --aj-ok: #1F7A45;
+  --aj-error: #B0232B;
+
+  /* Tipografía */
+  --aj-font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --aj-font-display: "Poppins", var(--aj-font);
+  --aj-fs-xs: 0.75rem;    /* 12px  etiquetas, legal */
+  --aj-fs-sm: 0.875rem;   /* 14px  apoyo */
+  --aj-fs-base: 1rem;     /* 16px  cuerpo (mínimo en móvil para no zoom) */
+  --aj-fs-lg: 1.25rem;    /* 20px  subtítulo */
+  --aj-fs-xl: 1.75rem;    /* 28px  título de sección */
+  --aj-fs-2xl: 2.5rem;    /* 40px  hero móvil */
+  --aj-fs-3xl: 3.5rem;    /* 56px  hero desktop */
+  --aj-lh-tight: 1.1;
+  --aj-lh-base: 1.55;
+
+  /* Espaciado (escala 4px) */
+  --aj-1: 0.25rem; --aj-2: 0.5rem;  --aj-3: 0.75rem; --aj-4: 1rem;
+  --aj-6: 1.5rem;  --aj-8: 2rem;    --aj-12: 3rem;   --aj-16: 4rem;
+  --aj-24: 6rem;
+
+  /* Forma y sombra */
+  --aj-radio-sm: 4px;   /* el logo es de esquina recta: no abusar del redondeo */
+  --aj-radio: 8px;
+  --aj-sombra: 0 2px 12px rgba(14, 14, 14, 0.08);
+  --aj-borde: 1px solid var(--aj-gris-borde);
+
+  /* Medidas */
+  --aj-contenedor: 1120px;
+  --aj-tap-min: 44px;      /* área táctil mínima */
+  --aj-header-h: 64px;
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--aj-font);
+  font-size: var(--aj-fs-base);
+  line-height: var(--aj-lh-base);
+  color: var(--aj-texto);
+  background: var(--aj-blanco);
+  text-rendering: optimizeLegibility;
+}
+
+img, video { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3 {
+  font-family: var(--aj-font-display);
+  font-weight: 700;
+  line-height: var(--aj-lh-tight);
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--aj-4);
+}
+
+h1 { font-size: clamp(var(--aj-fs-2xl), 7vw, var(--aj-fs-3xl)); }
+h2 { font-size: clamp(var(--aj-fs-xl), 5vw, 2.25rem); }
+h3 { font-size: var(--aj-fs-lg); }
+
+p { margin: 0 0 var(--aj-4); }
+
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+/* Foco visible: requisito de accesibilidad AA */
+:focus-visible {
+  outline: 3px solid var(--aj-rojo);
+  outline-offset: 2px;
+}
+
+.contenedor {
+  width: min(100% - 2rem, var(--aj-contenedor));
+  margin-inline: auto;
+}
+
+/* ---------- Botones ---------- */
+.aj-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--aj-2);
+  min-height: var(--aj-tap-min);
+  padding: 0 var(--aj-6);
+  border: 2px solid transparent;
+  border-radius: var(--aj-radio-sm);
+  font: 700 1rem/1 var(--aj-font);
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+
+/* Primario: una sola acción por pantalla */
+.aj-btn--primario {
+  background: var(--aj-rojo);
+  color: var(--aj-blanco);
+}
+.aj-btn--primario:hover { background: var(--aj-rojo-hover); }
+
+/* Secundario: sobre negro o sobre blanco */
+.aj-btn--secundario {
+  background: transparent;
+  color: currentColor;
+  border-color: currentColor;
+}
+.aj-btn--secundario:hover { background: rgba(176, 35, 43, 0.08); }
+
+/* WhatsApp: único uso de verde en toda la interfaz */
+.aj-btn--wa {
+  background: #1F7A45;
+  color: #FFFFFF;
+}
+
+/* ---------- Precio y badges ---------- */
+.aj-precio { font-weight: 700; font-variant-numeric: tabular-nums; }
+.aj-precio--referencia { font-weight: 500; color: var(--aj-texto-suave); font-size: var(--aj-fs-sm); }
+
+.aj-badge {
+  display: inline-block;
+  padding: var(--aj-1) var(--aj-3);
+  border-radius: 999px;
+  font-size: var(--aj-fs-xs);
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  background: var(--aj-negro);
+  color: var(--aj-blanco);
+}
+.aj-badge--linea { background: transparent; color: var(--aj-rojo); border: 1px solid var(--aj-rojo); }
+
+/* ---------- Barra fija de WhatsApp (móvil) ---------- */
+.aj-wa-fija {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--aj-3);
+  padding: var(--aj-2) var(--aj-4) calc(var(--aj-2) + env(safe-area-inset-bottom));
+  background: var(--aj-negro);
+  color: var(--aj-blanco);
+  font-size: var(--aj-fs-sm);
+}
+@media (min-width: 900px) { .aj-wa-fija { display: none; } }
+
+/* El contenido no queda tapado por la barra fija */
+body { padding-bottom: 0; }
+@media (max-width: 899px) { body { padding-bottom: 72px; } }
+
+/* ---------- Preferencias del usuario ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

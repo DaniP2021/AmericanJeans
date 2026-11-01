@@ -1,0 +1,25 @@
+/* Candidata A — "Terracota y denim"
+   Cálida y cercana. El azul del jean como ancla, el terracota como acción.
+   Es la paleta por defecto de styles.css; este archivo existe para poder
+   previsualizarla y compararla sin tocar la base. */
+
+:root {
+  --u-fondo: #FDF6F1;
+  --u-superficie: #FFFFFF;
+  --u-texto: #1C1512;
+  --u-texto-suave: #6E625B;
+  --u-borde: #EBDCD1;
+
+  --u-accion: #B8452C;
+  --u-accion-hover: #9C3822;
+  --u-accion-texto: #FFFFFF;
+
+  --u-vivo: #E2703A;
+  --u-acento: #F2B37A;
+
+  --u-banda: #1F3A5F;
+  --u-banda-texto: #FFFFFF;
+
+  --u-tinte: #FBEFE6;
+  --u-tinte-2: #E9F0F7;
+}

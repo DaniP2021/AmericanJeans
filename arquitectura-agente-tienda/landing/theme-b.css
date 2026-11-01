@@ -1,0 +1,24 @@
+/* Candidata B — "Cielo y durazno"
+   Fresca y optimista. Azul vivo para la acción, durazno para la calidez.
+   Se aplica encima de styles.css: sólo cambia roles de color. */
+
+:root {
+  --u-fondo: #F6F9FF;
+  --u-superficie: #FFFFFF;
+  --u-texto: #111A2B;
+  --u-texto-suave: #5C6678;
+  --u-borde: #DCE6F5;
+
+  --u-accion: #1E56D6;        /* AA con blanco 6.22 · sobre tinte del hero 5.44 */
+  --u-accion-hover: #1745B0;
+  --u-accion-texto: #FFFFFF;
+
+  --u-vivo: #3D7BF0;
+  --u-acento: #FF8A65;
+
+  --u-banda: #0F1B33;
+  --u-banda-texto: #FFFFFF;
+
+  --u-tinte: #E8F0FF;
+  --u-tinte-2: #FFF2ED;
+}

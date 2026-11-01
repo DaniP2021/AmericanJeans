@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fondo de marca — variantes</title>
+<style>
+  :root { --tinta:#1C1512; --suave:#6E625B; --borde:#E3DCD4; --rojo:#B0232B; --crema:#FDF6F1; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--crema); color:var(--tinta);
+         font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  header { padding:30px 26px 18px; border-bottom:1px solid var(--borde); }
+  header h1 { margin:0 0 6px; font-size:1.5rem; }
+  header p { margin:0; color:var(--suave); font-size:.9rem; }
+  section { padding:26px; border-bottom:1px solid var(--borde); }
+  h2 { margin:0 0 4px; font-size:1.05rem; }
+  .nota { margin:0 0 16px; color:var(--suave); font-size:.85rem; max-width:760px; line-height:1.5; }
+  .mock { width:100%; max-width:1180px; border:1px solid var(--borde); border-radius:10px;
+          display:block; background:#fff; }
+  .tira { display:grid; gap:14px; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); }
+  .tira img { width:100%; border-radius:8px; border:1px solid var(--borde); background:#fff; }
+  .paleta { display:flex; gap:10px; flex-wrap:wrap; margin-top:6px; }
+  .chip { display:flex; align-items:center; gap:8px; font-size:.78rem; color:var(--suave);
+          border:1px solid var(--borde); border-radius:999px; padding:6px 12px; background:#fff; }
+  .punto { width:16px; height:16px; border-radius:50%; border:1px solid rgba(0,0,0,.12); }
+  footer { padding:22px 26px 46px; color:var(--suave); font-size:.8rem; }
+  a { color:var(--rojo); }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Fondo de marca — variantes</h1>
+    <p>La idea de tu foto, con la paleta que ya usa la web. Abajo están las dos opciones para elegir.</p>
+  </header>
+
+  <section>
+    <h2>Variante 1 · la prenda se apoya sobre el fondo</h2>
+    <p class="nota">Más cálida y más de tienda de ropa: la prenda flota sin caja, con sombra suave.
+       La usaría en la portada del catálogo.</p>
+    <img class="mock" src="web-variante-1.png" alt="Variante 1">
+  </section>
+
+  <section>
+    <h2>Variante 2 · tarjetas blancas sobre el fondo cálido</h2>
+    <p class="nota">Más ordenada y más clara para comparar. La usaría en la grilla completa,
+       donde hay muchos productos juntos.</p>
+    <img class="mock" src="web-variante-2.png" alt="Variante 2">
+  </section>
+
+  <section>
+    <h2>Los productos ya con el fondo aplicado</h2>
+    <p class="nota">Siete de los trece. Las fotos dejaron de depender del blanco: la prenda va
+       recortada con transparencia, así que el mismo archivo sirve sobre cualquier fondo.</p>
+    <div class="tira">
+      <img src="../variantes-lino/jean-elastizado-tres-lavados-lino-720.jpg" alt="Jean">
+      <img src="../variantes-lino/camisa-estampada-manga-larga-seis-colores-lino-720.jpg" alt="Camisas">
+      <img src="../variantes-lino/bermuda-elastizada-corte-jean-negro-y-azul-lino-720.jpg" alt="Bermuda">
+      <img src="../variantes-lino/gabardina-corte-chino-beige-lino-720.jpg" alt="Gabardina">
+      <img src="../variantes-lino/conjunto-deportivo-wafle-negro-lino-720.jpg" alt="Conjunto">
+      <img src="../variantes-lino/chomba-rayada-cuatro-colores-lino-720.jpg" alt="Chomba">
+      <img src="../variantes-lino/pantalon-cargo-de-microfibra-cuatro-colores-lino-720.jpg" alt="Cargo">
+    </div>
+  </section>
+
+  <section>
+    <h2>La paleta que se usó</h2>
+    <p class="nota">Es la paleta A, la misma de la web. No copié el beige de tu foto: copié la
+       estructura —fondo cálido, textura de papel, luz y sombra— y la pinté con estos valores.</p>
+    <div class="paleta">
+      <span class="chip"><span class="punto" style="background:#FDF6F1"></span> crema #FDF6F1</span>
+      <span class="chip"><span class="punto" style="background:#F5E9DE"></span> arena #F5E9DE</span>
+      <span class="chip"><span class="punto" style="background:#E8D8C9"></span> tierra #E8D8C9</span>
+      <span class="chip"><span class="punto" style="background:#B8452C"></span> terracota #B8452C</span>
+      <span class="chip"><span class="punto" style="background:#E2703A"></span> vivo #E2703A</span>
+      <span class="chip"><span class="punto" style="background:#1F3A5F"></span> denim #1F3A5F</span>
+    </div>
+  </section>
+
+  <footer>
+    Cuando elijas, aplico la variante al catálogo completo y a la landing.
+    Volver al <a href="../catalogo.html">catálogo</a>.
+  </footer>
+</body>
+</html>

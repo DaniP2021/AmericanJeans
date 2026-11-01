@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catálogo American Jeans</title>
+<style>
+  :root {
+    --tinta:#1C1512; --suave:#6E625B; --borde:#E4D6C8; --terracota:#B8452C;
+    --crema:#FDF6F1; --arena:#F5E9DE; --tierra:#E8D8C9;
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; color:var(--tinta); transition:background .35s ease;
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  body.lino {
+    background:
+      radial-gradient(1200px 700px at 50% 12%, #FFFBF7 0%, rgba(255,251,247,0) 62%),
+      linear-gradient(180deg, var(--crema) 0%, var(--arena) 46%, var(--tierra) 100%);
+    background-attachment:fixed;
+  }
+  body.blanco { background:#FFFFFF; }
+
+  header.top { padding:26px 26px 16px; border-bottom:1px solid var(--borde); }
+  header.top h1 { margin:0 0 6px; font-size:1.45rem; }
+  header.top p { margin:0; color:var(--suave); font-size:.88rem; }
+
+  .controles { padding:14px 26px 4px; display:flex; gap:22px; flex-wrap:wrap; align-items:center; }
+  .grupo { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+  .grupo > span { font-size:.74rem; color:var(--suave); letter-spacing:.04em; }
+  .pill {
+    font:inherit; font-size:.78rem; font-weight:700; cursor:pointer;
+    padding:8px 15px; border-radius:999px; border:1px solid var(--borde);
+    background:transparent; color:var(--tinta);
+  }
+  .pill[aria-pressed="true"] { background:var(--tinta); color:#fff; border-color:var(--tinta); }
+
+  .sello { margin:12px 26px 0; padding:14px 16px; background:#fff; border-left:3px solid var(--terracota);
+            border-radius:6px; font-size:.83rem; color:var(--suave); max-width:900px; line-height:1.55; }
+  .sello b { color:var(--tinta); }
+
+  main { padding:20px 26px 40px; display:grid; gap:28px;
+          grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); }
+
+  .producto { display:flex; flex-direction:column; }
+  .producto[hidden] { display:none; }
+  .marco { position:relative; height:320px; padding:0; border:0; background:transparent;
+            cursor:zoom-in; display:block; width:100%; }
+  .marco img {
+    position:absolute; inset:0; margin:auto; max-width:100%; max-height:100%;
+    width:auto; height:auto; filter:drop-shadow(0 12px 18px rgba(120,86,62,.16));
+    transition:opacity .3s ease, transform .3s ease;
+  }
+  .marco .seg { opacity:0; }
+  .marco:hover .seg, .marco:focus-visible .seg { opacity:1; }
+  .marco:hover img { transform:translateY(-2px); }
+  body.blanco .marco img { filter:drop-shadow(0 10px 16px rgba(90,80,72,.10)); }
+
+  .cuantas { position:absolute; right:6px; bottom:6px; font-size:.66rem; font-weight:700;
+              background:rgba(28,21,18,.72); color:#fff; padding:3px 8px; border-radius:999px; }
+
+  .chip { margin:12px 0 2px; font-size:.66rem; letter-spacing:.13em; text-transform:uppercase;
+           color:var(--terracota); font-weight:800; }
+  .chip .tipo { color:var(--suave); font-weight:600; letter-spacing:.08em; }
+  h2 { margin:2px 0 0; font-size:.98rem; line-height:1.25; }
+  .color { margin:2px 0 12px; font-size:.82rem; color:var(--suave); }
+  .boton { margin-top:auto; display:block; text-align:center; text-decoration:none; padding:11px;
+            background:var(--terracota); color:#fff; font-weight:700; font-size:.82rem;
+            border-radius:6px; letter-spacing:.04em; }
+  .boton:hover { background:#9E3823; }
+
+  .vacio { padding:0 26px 40px; color:var(--suave); font-size:.9rem; display:none; }
+  .vacio.visible { display:block; }
+
+  .lupa { position:fixed; inset:0; background:rgba(20,15,12,.88); display:none;
+           align-items:center; justify-content:center; z-index:50; padding:24px; }
+  .lupa.abierta { display:flex; }
+  .lupa img { max-width:92vw; max-height:86vh; border-radius:8px; }
+  .lupa .cerrar { position:absolute; top:18px; right:22px; font-size:2rem; line-height:1;
+                   background:none; border:0; color:#fff; cursor:pointer; }
+  .lupa .mover { position:absolute; top:50%; transform:translateY(-50%); font-size:2.6rem;
+                  background:none; border:0; color:#fff; cursor:pointer; padding:0 18px; }
+  .lupa .prev { left:0; } .lupa .next { right:0; }
+
+  footer { padding:18px 26px 46px; color:var(--suave); font-size:.78rem; }
+  @media (max-width:720px) { .marco { height:260px; } main { gap:20px; } }
+
+  body.tarjetas .producto { background:#fff; border:1px solid var(--borde); border-radius:12px;
+                            padding:14px 14px 16px;
+                            box-shadow:0 8px 18px rgba(120,86,62,.07); }
+  body.tarjetas .marco { height:300px; }
+  body.tarjetas .chip { margin-top:14px; }
+
+</style>
+</head>
+<body class="lino tarjetas">
+
+  <header class="top">
+    <h1>Catálogo American Jeans</h1>
+    <p>18 productos · 33 fotos · ordenado por ocasión de uso</p>
+  </header>
+
+  <div class="controles">
+    <div class="grupo">
+      <span>OCASIÓN</span>
+      <button class="pill" data-ocasion="todo" aria-pressed="true">Todo</button>
+      <button class="pill" data-ocasion="Vestir" aria-pressed="false">Vestir</button>
+      <button class="pill" data-ocasion="Oficina" aria-pressed="false">Oficina</button>
+      <button class="pill" data-ocasion="Informal" aria-pressed="false">Informal</button>
+      <button class="pill" data-ocasion="Fin de semana" aria-pressed="false">Fin de semana</button>
+      <button class="pill" data-ocasion="Looks" aria-pressed="false">Looks</button>
+    </div>
+    <div class="grupo">
+      <span>FONDO</span>
+      <button class="pill" id="btn-lino" aria-pressed="true">Lino</button>
+      <button class="pill" id="btn-blanco" aria-pressed="false">Blanco</button>
+    </div>
+  </div>
+
+  <div class="sello">
+    <b>Etiqueta de marca a la vista.</b> Camisas: etiqueta American Jeans cosida en el cuello.
+    Jeans: parche de cuero American en la cintura. Conjuntos: etiqueta colgante American Jeans.
+    En las demás prendas la foto no alcanza a mostrar la etiqueta.
+  </div>
+
+  <main id="grilla">
+      <article class="producto" data-ocasion="Oficina">
+        <button class="marco" data-fotos="seleccion-transparente/gabardina-recto-expansible-corte-chino-cuatro-colores-1200.webp" aria-label="Ver fotos de Gabardina recto expansible corte chino Cuatro colores">
+        <img src="seleccion-transparente/gabardina-recto-expansible-corte-chino-cuatro-colores-720.webp" alt="Gabardina recto expansible corte chino Cuatro colores" loading="lazy">
+        </button>
+        <p class="chip">Oficina <span class="tipo">· Pantalón</span></p>
+        <h2>Gabardina recto expansible corte chino</h2>
+        <p class="color">Cuatro colores</p>
+        <a class="boton" href="#">Consultar</a>
+      </article>
+      <article class="producto" data-ocasion="Vestir">
+        <button class="marco" data-fotos="seleccion-transparente/pantalon-de-vestir-cuatro-colores-1200.webp|seleccion-transparente/pantalon-de-vestir-cuatro-colores-alt1-1200.webp" aria-label="Ver fotos de Pantalón de vestir Cuatro colores">
+        <img src="seleccion-transparente/pantalon-de-vestir-cuatro-colores-720.webp" alt="Pantalón de vestir Cuatro colores" loading="lazy">
+        <img class="seg" src="seleccion-transparente/pantalon-de-vestir-cuatro-colores-alt1-720.webp" alt="Pantalón de vestir, otra vista" loading="lazy">
+        <span class="cuantas">2 fotos</span>
+        </button>
+        <p class="chip">Vestir <span class="tipo">· Pantalón</span></p>
+        <h2>Pantalón de vestir</h2>
+        <p class="color">Cuatro colores</p>
+        <a class="boton" href="#">Consultar</a>
+      </article>
+      <article class="producto" data-ocasion="Vestir">
+        <button class="marco" data-fotos="seleccion-transparente/camisa-lisa-seis-colores-1200.webp|seleccion-transparente/camisa-lisa-seis-colores-alt1-1200.webp" aria-label="Ver fotos de Camisa de vestir Seis colores">
+        <img src="seleccion-transparente/camisa-lisa-seis-colores-720.webp" alt="Camisa de vestir Seis colores" loading="lazy">
+        <img class="seg" src="seleccion-transparente/camisa-lisa-seis-colores-alt1-720.webp" alt="Camisa de vestir, otra vista" loading="lazy">
+        <span class="cuantas">2 fotos</span>
+        </button>
+        <p class="chip">Vestir <span class="tipo">· Camisa</span></p>
+        <h2>Camisa de vestir</h2>
+        <p class="color">Seis colores</p>
+        <a class="boton" href="#">Consultar</a>
+      </article>
+      <article class="producto" data-ocasion="Vestir">
+        <button class="marco" data-fotos="seleccion-transparente/corbata-lisa-varios-colores-1200.webp|seleccion-transparente/corbata-lisa-varios-colores-alt1-1200.webp|seleccion-transparente/corbata-lisa-varios-colores-alt2-1200.webp" aria-label="Ver fotos de Corbata lisa Negro, azul, rojo y verde">
+        <img src="seleccion-transparente/corbata-lisa-varios-colores-720.webp" alt="Corbata lisa Negro, azul, rojo y verde" loading="lazy">
+        <img class="seg" src="seleccion-transparente/corbata-lisa-varios-colores-alt1-720.webp" alt="Corbata lisa, otra vista" loading="lazy">
+        <span class="cuantas">3 fotos</span>
+        </button>
+        <p class="chip">Vestir <span class="tipo">· Corbata</span></p>
+        <h2>Corbata lisa</h2>
+        <p class="color">Negro, azul, rojo y verde</p>
+        <a class="boton" href="#">Consultar</a>
+      </article>
+      <article class="producto" data-ocasion="Vestir">
+        <button class="marco" data-fotos="seleccion-transparente/chaleco-de-vestir-negro-1200.webp|seleccion-transparente/chaleco-de-vestir-negro-alt1-1200.webp" aria-label="Ver fotos de Chaleco de vestir Negro">
+        <img src="seleccion-transparente/chaleco-de-vestir-negro-720.webp" alt="Chaleco de vestir Negro" loading="lazy">
+        <img class="seg" src="seleccion-transparente/chaleco-de-vestir-negro-alt1-720.webp" alt="Chaleco de vestir, otra vista" loading="lazy">
+        <span class="cuantas">2 fotos</span>
+        </button>
+        <p class="chip">Vestir <span class="tipo">· Chaleco</span></p>
+        <h2>Chaleco de vestir</h2>
+        <p class="color">Negro</p>
+        <a class="boton" href="#">Consultar</a>
+      </article>
+      <article class="producto" data-ocasion="Oficina">
+        <button class="marco" data-fotos="seleccion-transparente/camisa-estampada-manga-larga-seis-colores-1200.webp|seleccion-transparente/camisa-estampada-manga-larga-seis-colores-alt1-1200.webp" aria-label="Ver fotos de Camisa estampada manga larga Seis colores">
+        <img src="seleccion-transparente/camisa-estampada-manga-larga-seis-colores-720.webp" alt="Camisa estampada manga larga Seis colores" loading="lazy">
+        <img class="seg" src="seleccion-transparente/camisa-estampada-manga-larga-seis-colores-alt1-720.webp" alt="Camisa estampada manga larga, otra vista" loading="lazy">
+        <span class="cuantas">2 fotos</span>
+        </button>
+        <p class="chip">Oficina <span class="tipo">· Camisa</span></p>
+        <h2>Camisa estampada manga larga</h2>
+        <p class="color">Seis colores</p>
+        <a class="boton" href="#">Consultar</a>
+      </article>
+      <article class="producto" data-ocasion="Oficina">
+        <button class="marco" data-fotos="seleccion-transparente/sweter-cuello-v-azul-marino-1200.webp" aria-label="Ver fotos de Sweter cuello V Azul marino">
+        <img src="seleccion-transparente/sweter-cuello-v-azul-marino-720.webp" alt="Sweter cuello V Azul marino" loading="lazy">
+        </button>
+        <p class="chip">Oficina <span class="tipo">· Sweter</span></p>
+        <h2>Sweter cuello V</h2>
+        <p class="color">Azul marino</p>
+        <a class="boton" href="#">Consultar</a>
+      </article>
+      <article class="producto" data-ocasion="Oficina">
+        <button class="marco" data-fotos="seleccion-transparente/sweter-medio-cierre-1200.webp|seleccion-transparente/sweter-medio-cierre-alt1-1200.webp" aria-label="Ver fotos de Sweter medio cierre Azul y negro">
+        <img src="seleccion-transparente/sweter-medio-cierre-720.webp" alt="Sweter medio cierre Azul y negro" loading="lazy">
+        <img class="seg" src="seleccion-transparente/sweter-medio-cierre-alt1-720.webp" alt="Sweter medio cierre, otra vista" loading="lazy">
+        <span class="cuantas">2 fotos</span>
+        </button>
+        <p class="chip">Oficina <span class="tipo">· Sweter</span></p>
+        <h2>Sweter medio cierre</h2>
+        <p class="color">Azul y negro</p>
+        <a class="boton" href="#">Consultar</a>
+      </article>
+      <article class="producto" data-ocasion="Looks">
+        <button class="marco" data-fotos="seleccion-transparente/look-camisas-y-pantalon-de-vestir-1200.webp" aria-label="Ver fotos de Camisas lisas con pantalón de vestir Look armado">
+        <img src="seleccion-transparente/look-camisas-y-pantalon-de-vestir-720.webp" alt="Camisas lisas con pantalón de vestir Look armado" loading="lazy">
+        </button>
+        <p class="chip">Looks <span class="tipo">· Combinación</span></p>
+        <h2>Camisas lisas con pantalón de vestir</h2>
+        <p class="color">Look armado</p>
+        <a class="boton" href="#">Consultar</a>
+      </article>
+      <article class="producto" data-ocasion="Looks">
+        <button class="marco" data-fotos="seleccion-transparente/look-camisa-de-vestir-con-corbata-1200.webp" aria-label="Ver fotos de Camisa de vestir con corbata Tres combinaciones">
+        <img src="seleccion-transparente/look-camisa-de-vestir-con-corbata-720.webp" alt="Camisa de vestir con corbata Tres combinaciones" loading="lazy">
+        </button>
+        <p class="chip">Looks <span class="tipo">· Combinación</span></p>
+        <h2>Camisa de vestir con corbata</h2>
+        <p class="color">Tres combinaciones</p>
+        <a class="boton" href="#">Consultar</a>
+      </article>
+      <article class="producto" data-ocasion="Informal">
+        <button class="marco" data-fotos="seleccion-transparente/jean-clasico-tres-lavados-1200.webp|seleccion-transparente/jean-clasico-tres-lavados-alt1-1200.webp|seleccion-transparente/jean-clasico-tres-lavados-alt2-1200.webp" aria-label="Ver fotos de Jean clásico Tres lavados">
+        <img src="seleccion-transparente/jean-clasico-tres-lavados-720.webp" alt="Jean clásico Tres lavados" loading="lazy">
+        <img class="seg" src="seleccion-transparente/jean-clasico-tres-lavados-alt1-720.webp" alt="Jean clásico, otra vista" loading="lazy">
+        <span class="cuantas">3 fotos</span>
+        </button>
+        <p class="chip">Informal <span class="tipo">· Jean</span></p>
+        <h2>Jean clásico</h2>
+        <p class="color">Tres lavados</p>
+        <a class="boton" href="#">Consultar</a>
+      </article>
+      <article class="producto" data-ocasion="Informal">
+        <button class="marco" data-fotos="seleccion-transparente/gabardina-corte-jean-slim-fit-azul-y-negro-1200.webp" aria-label="Ver fotos de Gabardina corte jean slim fit Azul y negro">
+        <img src="seleccion-transparente/gabardina-corte-jean-slim-fit-azul-y-negro-720.webp" alt="Gabardina corte jean slim fit Azul y negro" loading="lazy">
+        </button>
+        <p class="chip">Informal <span class="tipo">· Pantalón</span></p>
+        <h2>Gabardina corte jean slim fit</h2>
+        <p class="color">Azul y negro</p>
+        <a class="boton" href="#">Consultar</a>
+      </article>
+      <article class="producto" data-ocasion="Informal">
+        <button class="marco" data-fotos="seleccion-transparente/chomba-rayada-cuatro-colores-1200.webp|seleccion-transparente/chomba-rayada-cuatro-colores-alt1-1200.webp|seleccion-transparente/chomba-rayada-cuatro-colores-alt2-1200.webp" aria-label="Ver fotos de Chomba rayada Cuatro colores">
+        <img src="seleccion-transparente/chomba-rayada-cuatro-colores-720.webp" alt="Chomba rayada Cuatro colores" loading="lazy">
+        <img class="seg" src="seleccion-transparente/chomba-rayada-cuatro-colores-alt1-720.webp" alt="Chomba rayada, otra vista" loading="lazy">
+        <span class="cuantas">3 fotos</span>
+        </button>
+        <p class="chip">Informal <span class="tipo">· Chomba</span></p>
+        <h2>Chomba rayada</h2>
+        <p class="color">Cuatro colores</p>
+        <a class="boton" href="#">Consultar</a>
+      </article>
+      <article class="producto" data-ocasion="Informal">
+        <button class="marco" data-fotos="seleccion-transparente/bermuda-elastizada-corte-jean-negro-y-azul-1200.webp|seleccion-transparente/bermuda-elastizada-corte-jean-negro-y-azul-alt1-1200.webp|seleccion-transparente/bermuda-elastizada-corte-jean-negro-y-azul-alt2-1200.webp" aria-label="Ver fotos de Bermuda corte jean Negro y azul">
+        <img src="seleccion-transparente/bermuda-elastizada-corte-jean-negro-y-azul-720.webp" alt="Bermuda corte jean Negro y azul" loading="lazy">
+        <img class="seg" src="seleccion-transparente/bermuda-elastizada-corte-jean-negro-y-azul-alt1-720.webp" alt="Bermuda corte jean, otra vista" loading="lazy">
+        <span class="cuantas">3 fotos</span>
+        </button>
+        <p class="chip">Informal <span class="tipo">· Bermuda</span></p>
+        <h2>Bermuda corte jean</h2>
+        <p class="color">Negro y azul</p>
+        <a class="boton" href="#">Consultar</a>
+      </article>
+      <article class="producto" data-ocasion="Looks">
+        <button class="marco" data-fotos="seleccion-transparente/pantalon-con-tres-chombas-bordo-blanco-marino-1200.webp" aria-label="Ver fotos de Pantalón con tres chombas Bordó, blanco, marino">
+        <img src="seleccion-transparente/pantalon-con-tres-chombas-bordo-blanco-marino-720.webp" alt="Pantalón con tres chombas Bordó, blanco, marino" loading="lazy">
+        </button>
+        <p class="chip">Looks <span class="tipo">· Combinación</span></p>
+        <h2>Pantalón con tres chombas</h2>
+        <p class="color">Bordó, blanco, marino</p>
+        <a class="boton" href="#">Consultar</a>
+      </article>
+      <article class="producto" data-ocasion="Looks">
+        <button class="marco" data-fotos="seleccion-transparente/pantalon-con-tres-chombas-rojo-blanco-marino-1200.webp" aria-label="Ver fotos de Pantalón con tres chombas Rojo, blanco, marino">
+        <img src="seleccion-transparente/pantalon-con-tres-chombas-rojo-blanco-marino-720.webp" alt="Pantalón con tres chombas Rojo, blanco, marino" loading="lazy">
+        </button>
+        <p class="chip">Looks <span class="tipo">· Combinación</span></p>
+        <h2>Pantalón con tres chombas</h2>
+        <p class="color">Rojo, blanco, marino</p>
+        <a class="boton" href="#">Consultar</a>
+      </article>
+      <article class="producto" data-ocasion="Fin de semana">
+        <button class="marco" data-fotos="seleccion-transparente/pantalon-cargo-de-microfibra-cuatro-colores-1200.webp|seleccion-transparente/pantalon-cargo-de-microfibra-cuatro-colores-alt1-1200.webp" aria-label="Ver fotos de Pantalón cargo de microfibra Cuatro colores">
+        <img src="seleccion-transparente/pantalon-cargo-de-microfibra-cuatro-colores-720.webp" alt="Pantalón cargo de microfibra Cuatro colores" loading="lazy">
+        <img class="seg" src="seleccion-transparente/pantalon-cargo-de-microfibra-cuatro-colores-alt1-720.webp" alt="Pantalón cargo de microfibra, otra vista" loading="lazy">
+        <span class="cuantas">2 fotos</span>
+        </button>
+        <p class="chip">Fin de semana <span class="tipo">· Pantalón</span></p>
+        <h2>Pantalón cargo de microfibra</h2>
+        <p class="color">Cuatro colores</p>
+        <a class="boton" href="#">Consultar</a>
+      </article>
+      <article class="producto" data-ocasion="Fin de semana">
+        <button class="marco" data-fotos="seleccion-transparente/conjunto-deportivo-oliva-negro-1200.webp|seleccion-transparente/conjunto-deportivo-oliva-negro-alt1-1200.webp" aria-label="Ver fotos de Conjunto deportivo microfibra Oliva y negro">
+        <img src="seleccion-transparente/conjunto-deportivo-oliva-negro-720.webp" alt="Conjunto deportivo microfibra Oliva y negro" loading="lazy">
+        <img class="seg" src="seleccion-transparente/conjunto-deportivo-oliva-negro-alt1-720.webp" alt="Conjunto deportivo microfibra, otra vista" loading="lazy">
+        <span class="cuantas">2 fotos</span>
+        </button>
+        <p class="chip">Fin de semana <span class="tipo">· Conjunto</span></p>
+        <h2>Conjunto deportivo microfibra</h2>
+        <p class="color">Oliva y negro</p>
+        <a class="boton" href="#">Consultar</a>
+      </article></main>
+  <p class="vacio" id="vacio">No hay productos en esta ocasión todavía.</p>
+
+  <footer>
+    Las prendas van recortadas con transparencia: el fondo es de la página, no de la foto.
+    Las categorías son de ocasión, no de tipo de prenda: el tipo figura en cada ficha.
+  </footer>
+
+<div class="lupa" id="lupa">
+  <button class="cerrar" aria-label="Cerrar">&times;</button>
+  <button class="mover prev" aria-label="Anterior">&#8249;</button>
+  <img id="lupa-img" alt="">
+  <button class="mover next" aria-label="Siguiente">&#8250;</button>
+</div>
+
+<script>
+  const cuerpo = document.body;
+  const bLino = document.getElementById('btn-lino');
+  const bBlanco = document.getElementById('btn-blanco');
+  function ponerFondo(fondo) {
+    cuerpo.classList.toggle('lino', fondo === 'lino');
+    cuerpo.classList.toggle('blanco', fondo === 'blanco');
+    bLino.setAttribute('aria-pressed', String(fondo === 'lino'));
+    bBlanco.setAttribute('aria-pressed', String(fondo === 'blanco'));
+    try { localStorage.setItem('aj-fondo', fondo); } catch (e) {}
+  }
+  bLino.addEventListener('click', () => ponerFondo('lino'));
+  bBlanco.addEventListener('click', () => ponerFondo('blanco'));
+  let guardado = null;
+  try { guardado = localStorage.getItem('aj-fondo'); } catch (e) {}
+  ponerFondo(guardado === 'blanco' ? 'blanco' : 'lino');
+
+  const fichas = [...document.querySelectorAll('.producto')];
+  const pills = [...document.querySelectorAll('[data-ocasion]')];
+  const vacio = document.getElementById('vacio');
+  function filtrar(cual) {
+    let visibles = 0;
+    for (const f of fichas) {
+      const ok = cual === 'todo' || f.dataset.ocasion === cual;
+      f.hidden = !ok;
+      if (ok) visibles++;
+    }
+    for (const p of pills) p.setAttribute('aria-pressed', String(p.dataset.ocasion === cual));
+    vacio.classList.toggle('visible', visibles === 0);
+  }
+  for (const p of pills) p.addEventListener('click', () => filtrar(p.dataset.ocasion));
+
+  const lupa = document.getElementById('lupa');
+  const lupaImg = document.getElementById('lupa-img');
+  let fotos = [], indice = 0;
+  const mostrar = () => { lupaImg.src = fotos[indice]; };
+  document.querySelectorAll('.marco').forEach(m => {
+    m.addEventListener('click', () => {
+      fotos = (m.dataset.fotos || '').split('|').filter(Boolean);
+      indice = 0; mostrar(); lupa.classList.add('abierta');
+    });
+  });
+  const cerrar = () => lupa.classList.remove('abierta');
+  lupa.querySelector('.cerrar').addEventListener('click', cerrar);
+  lupa.querySelector('.prev').addEventListener('click', e => {
+    e.stopPropagation(); indice = (indice - 1 + fotos.length) % fotos.length; mostrar();
+  });
+  lupa.querySelector('.next').addEventListener('click', e => {
+    e.stopPropagation(); indice = (indice + 1) % fotos.length; mostrar();
+  });
+  lupa.addEventListener('click', e => { if (e.target === lupa) cerrar(); });
+  document.addEventListener('keydown', e => {
+    if (!lupa.classList.contains('abierta')) return;
+    if (e.key === 'Escape') cerrar();
+    if (e.key === 'ArrowLeft') { indice = (indice - 1 + fotos.length) % fotos.length; mostrar(); }
+    if (e.key === 'ArrowRight') { indice = (indice + 1) % fotos.length; mostrar(); }
+  });
+</script>
+</body>
+</html>

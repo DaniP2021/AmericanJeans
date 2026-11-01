@@ -1,0 +1,37 @@
+/* Páginas legales — extiende styles.css con lo mínimo para texto largo */
+
+.legal { padding: 2.5rem 0 4rem; }
+.legal .contenedor { max-width: 74ch; }
+.legal h1 { font-size: clamp(1.75rem, 5vw, 2.5rem); margin-bottom: .5rem; }
+.legal h2 { font-size: 1.25rem; margin: 2.25rem 0 .75rem; }
+.legal h3 { font-size: 1rem; margin: 1.5rem 0 .5rem; }
+.legal p, .legal li { font-size: .9375rem; color: #2A2A2A; }
+.legal ul, .legal ol { margin: 0 0 1rem; padding-left: 1.25rem; list-style: disc; }
+.legal ol { list-style: decimal; }
+.legal li { margin-bottom: .4rem; }
+.legal__meta {
+  font-size: .8125rem; color: var(--aj-gris); border-bottom: 1px solid var(--aj-gris-borde);
+  padding-bottom: 1rem; margin-bottom: 1.5rem;
+}
+.legal__volver { font-size: .875rem; margin-bottom: 1.5rem; display: inline-block; }
+.legal__aviso {
+  border-left: 3px solid var(--aj-rojo); background: var(--aj-fondo-claro);
+  padding: .9rem 1rem; font-size: .875rem; margin: 1.5rem 0;
+}
+.legal table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: .875rem; }
+.legal th, .legal td { border: 1px solid var(--aj-gris-borde); padding: .5rem .6rem; text-align: left; vertical-align: top; }
+.legal th { background: var(--aj-fondo-claro); }
+
+/* Formulario de arrepentimiento */
+.form-campo { margin-bottom: 1.1rem; }
+.form-campo label { display: block; font-weight: 700; font-size: .875rem; margin-bottom: .35rem; }
+.form-campo input, .form-campo textarea, .form-campo select {
+  width: 100%; min-height: 44px; padding: .6rem .7rem;
+  border: 1px solid #C9C6C1; border-radius: var(--aj-radio-sm);
+  font: inherit; font-size: 1rem; background: #fff;
+}
+.form-campo textarea { min-height: 110px; resize: vertical; }
+.form-campo .ayuda { font-size: .75rem; color: var(--aj-gris); margin-top: .3rem; }
+.form-check { display: flex; gap: .6rem; align-items: flex-start; margin: 1.25rem 0; }
+.form-check input { margin-top: .3rem; min-height: auto; width: auto; }
+.form-check label { font-size: .875rem; font-weight: 400; }

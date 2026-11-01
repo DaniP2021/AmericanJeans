@@ -1,0 +1,8 @@
+categoria,producto_slot,precio_minorista_ref,precio_mayorista_ref,ratio_min_may,minimo_mayorista,fuente,estado
+Jean,Jean wide leg tiro alto azul oscuro,28000,24900,1.12,2 unidades,Benchmark Todojeans 2026-10-25,referencia
+Camisa,Camisa entallada manga larga oxford,17500,14500,1.21,50000 pesos por compra,Benchmark Simplesmen 2026-10-25,referencia
+Remera,Remera algodón peinado cuello redondo,14000,8000,1.75,curva,Benchmark Oasis y Marcus 2026-10-25,referencia
+Chomba,Chomba piqué manga corta,,,,,Sin referencia de mercado,calibrar
+Buzo,Buzo frisa cuello redondo,,,,,Sin referencia de mercado,calibrar
+Bermuda,Bermuda sarga o jean,,,,,Sin referencia de mercado,calibrar
+Campera,Campera jean o inflable,,,,,Sin referencia de mercado,calibrar

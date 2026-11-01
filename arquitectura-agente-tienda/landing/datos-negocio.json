@@ -1,0 +1,26 @@
+{
+  "_nota": "Fuente única de datos del negocio. Después de editar, correr: python qa/aplicar_datos.py",
+  "marca": "American Jeans",
+  "razon_social": "El 73 S.R.L.",
+  "cuit": "30-71486507-9",
+  "cuit_digitos": "30714865079",
+  "domicilio_comercial": "Av. Rivadavia 2713, CABA",
+  "whatsapp_e164": "5491156469722",
+  "whatsapp_visible": "+54 9 11 5646-9722",
+  "whatsapp_nota": "número de pruebas provisto por el dueño el 26/10/2026. El original decía +24, que no es un código de país: se interpretó como +54 (Argentina)",
+  "email": "hola@americanjeans.com.ar",
+  "email_nota": "el dominio todavía no está registrado; si cambia el dominio, cambia el email",
+  "sucursal": {
+    "nombre": "Sucursal Rivadavia",
+    "direccion": "Av. Rivadavia 2713",
+    "localidad": "Ciudad Autónoma de Buenos Aires",
+    "es_deposito": true,
+    "horario": "lunes a sábado, de 9 a 19",
+    "maps": "https://www.google.com/maps/search/?api=1&query=Av.+Rivadavia+2713,+CABA"
+  },
+  "retiro": {
+    "plazo": "2 horas",
+    "condicion": "con cita confirmada, dentro del horario de atención"
+  },
+  "dominio_provisorio": "https://www.americanjeans.com.ar/"
+}

@@ -1,0 +1,24 @@
+# Credenciales — nunca al repositorio
+.secrets/
+
+# Dependencias y modelos descargados (se reinstalan con LEEME.md)
+.pylibs/
+.models/
+
+# Otros proyectos que viven en el mismo disco
+agente-nichos-youtube/
+automatizacion-tienda/
+investigacion-negocios-online/
+mis-prompts/
+sucursal-virtual/
+
+# Basura de sistema y de tooling
+__pycache__/
+*.pyc
+Thumbs.db
+.DS_Store
+node_modules/
+*.log
+
+# Recortes de prueba (los definitivos están en CATALOGO/decor/)
+CATALOGO/decor/_prueba-*
