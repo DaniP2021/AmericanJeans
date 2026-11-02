@@ -68,6 +68,7 @@ abriendo este archivo desde acá, funcionan.
 | Identidad de marca | [04-Identidad-American-Jeans.md](arquitectura-agente-tienda/04-Identidad-American-Jeans.md) |
 | Grilla de contenidos | [05-Grilla-Contenidos-Lanzamiento.md](arquitectura-agente-tienda/05-Grilla-Contenidos-Lanzamiento.md) |
 | Paletas de color | [06-Paletas.md](arquitectura-agente-tienda/06-Paletas.md) |
+| **Qué paleta aplicar y cómo** | [PALETA-A-APLICAR.md](PALETA-A-APLICAR.md) |
 | Benchmark de competencia | [benchmark-competencia.md](arquitectura-agente-tienda/benchmark-competencia.md) |
 
 ## 5. Catálogo y operación (documentos)
